@@ -39,6 +39,23 @@ export class TaskManagerService {
   }
 
   /**
+   * タスクの完了状態をトグル
+   * @param taskName
+   */
+  toggleTaskComplete(taskName: string) {
+    // 現状の配列を反復
+    for (let task of this.tasks) {
+      if (task.name == taskName) {
+        // 対象のタスクならば、完了状態をトグル
+        task.isCompleted = !task.isCompleted;
+      }
+    }
+
+    // LocalStorageに配列を保存
+    this.saveTask();
+  }
+
+  /**
    * タスクの数を取得
    * @returns
    */

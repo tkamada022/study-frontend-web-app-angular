@@ -1,7 +1,8 @@
 <mat-selection-list>
   <mat-list-option
     *ngFor="let task of taskManager.getTasks()"
-    [(selected)]="task.isCompleted"
+    [selected]="task.isCompleted"
+    (click)="taskManager.toggleTaskComplete(task.name)"
   >
     {{ task.name }}
   </mat-list-option>
