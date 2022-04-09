@@ -2,4 +2,8 @@
   position: fixed;
   bottom: 5%;
   right: 5%;
+
+  &:hover {
+    opacity: 0.7;
+  }
 }

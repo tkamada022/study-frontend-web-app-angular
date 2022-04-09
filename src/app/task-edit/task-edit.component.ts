@@ -20,7 +20,7 @@ export class TaskEditComponent implements OnInit {
   addTask(taskName: string) {
     this.taskManager.addTask(taskName);
     this.snackBar.open('追加しました！', undefined, {
-      duration: 2000,
+      duration: 2500,
     });
     this.router.navigate(['']);
   }
