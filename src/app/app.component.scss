@@ -1,4 +1,9 @@
-a {
+.gnav-logo-link {
   color: white;
   text-decoration: none;
+
+  &:hover {
+    transition-duration: 0.7s;
+    opacity: 0.6;
+  }
 }
