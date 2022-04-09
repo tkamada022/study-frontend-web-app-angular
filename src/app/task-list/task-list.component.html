@@ -3,8 +3,10 @@
     *ngFor="let task of taskManager.getTasks()"
     [selected]="task.isCompleted"
     (click)="taskManager.toggleTaskComplete(task.name)"
+    (contextmenu)="taskManager.toggleTaskArchive(task.name)"
   >
     {{ task.name }}
+    <span *ngIf="task.isArchived == true">アーカイブ済</span>
   </mat-list-option>
 </mat-selection-list>
 

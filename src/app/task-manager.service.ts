@@ -16,6 +16,7 @@ export class TaskManagerService {
     this.tasks.push({
       name: taskName,
       isCompleted: false,
+      isArchived: false,
     });
 
     // LocalStorage へ配列を保存
@@ -48,6 +49,23 @@ export class TaskManagerService {
       if (task.name == taskName) {
         // 対象のタスクならば、完了状態をトグル
         task.isCompleted = !task.isCompleted;
+      }
+    }
+
+    // LocalStorageに配列を保存
+    this.saveTask();
+  }
+
+  /**
+   * タスクの完了状態をトグル
+   * @param taskName
+   */
+  toggleTaskArchive(taskName: string) {
+    // 現状の配列を反復
+    for (let task of this.tasks) {
+      if (task.name == taskName) {
+        // 対象のタスクならば、完了状態をトグル
+        task.isArchived = !task.isArchived;
       }
     }
 
