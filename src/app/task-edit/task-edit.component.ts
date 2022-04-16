@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TaskManagerService } from '../task-manager.service';
@@ -8,12 +15,26 @@ import { TaskManagerService } from '../task-manager.service';
   templateUrl: './task-edit.component.html',
   styleUrls: ['./task-edit.component.scss'],
 })
-export class TaskEditComponent implements OnInit {
+export class TaskEditComponent implements OnInit, AfterViewInit {
+  @ViewChild('addTaskNameInput')
+  taskNameInputElem!: ElementRef;
+
   constructor(
     public taskManager: TaskManagerService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
+
+  /**
+   * コンポーネントが描画されたときのイベントハンドラ
+   */
+  ngAfterViewInit(): void {
+    // タスク名入力欄にフォーカスを当てる
+    this.taskNameInputElem.nativeElement.focus();
+    // Angularに強制的に変更検出させる
+    this.changeDetectorRef.detectChanges();
+  }
 
   ngOnInit(): void {}
 
